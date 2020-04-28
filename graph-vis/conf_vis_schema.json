@@ -1,0 +1,102 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"title": "Graph",
+	"description": "Configutation file of a graph done with vis.js",
+	"type": "object",
+	"required": ["filter", "vis_options", "styles"],
+	"properties": {
+		"filter": {
+			"description": "Filters applied to the network",
+			"type": "array",
+			"items": {
+				"type": "object",
+				"description": "A filter applicable to the network",
+				"required": ["description", "ini_node", "end_node"],
+				"properties": {
+					"description": {"type": "string"},
+					"connect": {
+						"type": "boolean",
+						"description": "'true' means to select the nodes that connect ini_node to end_node. 'false' means to select the nodes that does NOT connect ini_node with end_node"
+					},
+					"direction": {
+						"description": "'both' generates too many paths and might never end",
+						"enum": ["forward", "back", "both"] 
+					},
+					"ini_node": {
+						"description": "'ini_node' is the requested origin for the connecting paths",
+						"$ref": "#/definitions/superNormalSubtype"
+					},
+					"excluded_intermediate_node": {
+						"$ref": "#/definitions/superNormalSubtype"
+					},
+					"excluded_edge": {
+						"$ref": "#/definitions/edgeType"
+					},
+					"bidirectional_edge": {
+						"description": "'bidirectional_edge's are the links that can be transversed forward or backwards indepently of the value of direction. Do not use if 'direction' is 'both'. An 'excluded_edge' cannot be a 'bidirectional_edge' at the same time.",
+						"$ref": "#/definitions/edgeType"
+					},
+					"end_node": {
+						"description": "'end_node' is the requested end for the connecting paths",
+						"$ref": "#/definitions/superNormalSubtype"
+					}
+				}
+			}
+		},
+		"vis_options": { 
+			"description": "Options transferend directly to vis.js",
+			"type": "object"
+		},
+		"styles": {
+			"description": "Styles for nodes and edges (the second not implemented yet",
+			"type": "object",
+			"properties": {
+				"node": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"type": {"type": "string"},
+							"shape": {"type": "string"},
+							"color": {
+								"type": "object",
+								"properties": {
+									"background": {"type": "string"},
+									"border":{"type": "string"}
+								}
+							}
+						}
+					}
+				},
+				"eage": {
+					"type": "array",
+					"description": "not implemented yet"
+				}
+			}
+		}
+	},
+	"definitions": {
+		"superNormalSubtype": {		
+			"description": "Selector of types, supertypes or subtypes",
+			"type": "object",
+			"properties": {
+				"supertype": {
+					"type": ["array", "null"],
+					"items": { "type": "string"}
+				},
+				"type": {
+					"type": ["array", "null"],
+					"items": { "type": "string"}
+				}, 
+				"subtype": {
+					"type": ["array", "null"],
+					"items": { "type": "string"}
+				}
+			}
+		},
+		"edgeType": {
+			"type": "array",
+			"items": {"type": "string"}
+		}
+	}	
+}

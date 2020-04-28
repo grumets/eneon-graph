@@ -1,0 +1,61 @@
+{
+	"filter": [
+	{
+		"COMMENT": "Connecta una EBV amb un SDG_indicator",
+		"description": "All EBV used in SDG indicators with some bidiretional relations",
+		"connect": true,
+		"ini_node": {"supertype": ["SDGIndicator"], "type": null, "subtype": null},
+		"excluded_intermediate_node": {"supertype": null, "type": ["SDG"], "subtype": null},
+		"excluded_edge": ["relatedEV"],
+		"end_node": {"supertype": null, "type": ["EBV"], "subtype": null}	
+	}	
+],
+	"vis_options": { 
+		"interaction": { "navigationButtons": true, "keyboard": true},
+		"layout": {"improvedLayout": false},
+		"nodes": {"shape": "box", "borderWidth": 2, "shadow":true},
+		"edges": {"font": {"align": "top", "size": 10}}
+	},
+	"styles": {
+		"COMMENT": "Useful table of colors: https://www.w3schools.com/colors/colors_names.asp",
+		"node": [{
+			"type": "EONetwork",
+			"shape": "ellipse",
+			"color": {"background":"Aquamarine", "border": "Blue"}
+		},{
+			"type": "SDG",
+			"color": {"background":"LightYellow", "border":"GoldenRod"}
+		},{
+			"type": "SDGIndicator_S",
+			"color": {"background":"MediumSlateBlue", "border":"Indigo"}
+		},{
+			"type": "SDGIndicator_I",
+			"color": {"background":"OrangeRed", "border":"Red"}
+		},{
+			"type": "SDGIndicator_R",
+			"color": {"background":"RoyalBlue", "border":"Blue"}
+		},{
+			"type": "SDGIndicator_P",
+			"color": {"background":"SandyBrown", "border":"Brown"}
+		},{
+			"type": "EBV",
+			"color": {"background":"YellowGreen", "border":"SeaGreen"}
+		},{
+			"type": "ECV",
+			"color": {"background":"Pink", "border":"Orchid"}
+		},{
+			"type": "EOV",
+			"color": {"background":"Silver", "border":"DarkGray"}
+		},{
+			"type": "SocioEcoV",
+			"color": {"background":"Orchid", "border":"MediumVioletRed"}
+		},{
+			"type": "EAV",
+			"color": {"background":"LightBlue", "border":"LightSteelBlue"}
+		},{
+			"type": "EREV",
+			"color": {"background":"Moccasin", "border":"Khaki"}
+		}],
+		"eage": []
+	}
+}

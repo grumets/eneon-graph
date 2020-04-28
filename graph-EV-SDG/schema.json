@@ -1,0 +1,101 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"title": "Coverage objects",
+	"description": "Schema for Coverage objects",
+	"type": "object",
+	"required": [ "id", "type", "network" ],
+	"properties": {
+		"id": { "type": "string" },
+		"type": { "enum": ["NetworkPartType"]},
+		"network": { "$ref": "#/definitions/networkCollection" }
+	},
+	"definitions": {
+		"networkCollection": {
+			"title": "A collection of networks",
+			"description": "A collection of networks that will be releated to each other by its id and will appear as boxes in the graph",
+			"type": "array",
+			"items": {
+				"title": "Network",
+				"description": "A Network element of the graph (represented as a box)",
+				"type": "object",
+				"required": [ "id", "type" ],
+				"properties": {
+					"id":  { "type": "string", "description": "The identifier of the network. Generally is iqual to the acronim of the network name. It is used as target identifier in the links." },
+					"type": { "enum": ["SystemOfSystems", "ObservationSystem", "DataCenter", "Infrastructure", "NetworkOfNetworks", "Network", "EONetwork", "Program", "Unknown", "SDG", "SDGIndicator_I", "SDGIndicator_R", "SDGIndicator_P", "SDGIndicator_S", "EBV", "ECV", "ESV", "EAV", "EREV", "EOV", "SocioEcoV"], "description": "Network type" },
+					"theme": { "$ref": "#/definitions/theme" },
+					"alternativeTheme": {
+						"type": "array", 
+						"items": {
+							"$ref": "#/definitions/theme"
+						}
+					},
+					"SBA": { 
+						"type": "array", 
+						"items": {
+							"enum": ["Biodiversity and Ecosystem Sustainability", "Disaster Resilience", "Energy and Mineral Resources Management", "Food Security and Sustainable Agriculture", "Infrastructure and Transportation Management", "Public Health Surveillance", "Sustainable Urban Development", "Water Resources Management"], "description": "Societal Benefit Area"
+						}
+					},	
+					"extent": { "$ref": "#/definitions/extent" },
+					"title": { "type": "string", "description": "Name of the network"},
+					"description": { "type": "string", "description": "Textual description of the objectives and mission of the network" },
+					"url": { "$ref": "#/definitions/url" },
+					"alternativeUrl": { 
+						"type": "array", 
+						"items": {
+							"$ref": "#/definitions/url"
+						}
+					},
+					"logo": { "type": ["null", "string"], "format": "uri", "description": "Logo of the network" },
+					"contact": { "type": ["null", "string"], "format": "email", "description": "Email to contact the network" },
+					"ESFRI": {"type": ["null", "boolean"] , "description": "Is it a ESFRI or not"},
+					"supportingProject": { "$ref": "#/definitions/supportingProject" , "description": "Projects that are used to support the creation or maintenance of the network" },
+					"links": { "$ref": "#/definitions/links", "description": "Links to other networks with the reason for doing that" },
+					"connectedToDAB": { "type": ["null", "boolean"] , "description": "If the network provides data, this flag indicates if the data is registrered in the GEOSS Common Infrastructure" }
+				}
+			}
+		},
+		"links": {
+			"title": "Links between networks",
+			"description": "Links between networks",
+			"type": "object",
+			"required": [ "source" ],
+			"properties": {
+				"source":  { "type": "string" }
+			}
+		},
+		"supportingProject": {
+			"title": "Projects supporting the networks",
+			"description": "Projects supporting or funding the networks",
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": [ "name", "title", "active" ],
+				"properties": {
+					"id":  { "type": "string", "description": "The identifier of the project. Generally is an id assigned by the funding agency." },
+					"name": { "type": "string", "description": "Acronym of the project"},
+					"title": { "type": "string", "description": "Title of the project"},
+					"extent": { "$ref": "#/definitions/extent" },
+					"program": { "type": "string", "description": "Program funding the project"},
+					"active": { "type": ["null", "boolean"] , "description": "If it is still ongoing" }
+				}
+			}
+		},
+		"theme": {
+			"type": "array",
+			"title": "Network theme",
+			"description": "Network theme",
+			"items": {		
+				"enum": ["All", "Agriculture", "Atmosphere", "Biosphere", "Climate", "Disasters", "Economics", "Ecosystems", "Energy", "Environment", "Equality", "Forestry", "Geo-sciences", "Health", "Industry", "Justice", "Land", "Oceans", "Policy", "Poverty", "Radiation", "Solid Earth", "Technology", "Urban", "Waste", "Water"]
+					}
+		},
+		"extent": {
+			"title": "Extent description",
+			"enum": ["Arctic", "National", "European", "Pan-European", "Regional", "Global", "Tropic"]
+		},
+		"url": {
+			"description": "URL of the website of the network",
+			"type": "string", 
+			"format": "uri"
+		}
+	}
+}

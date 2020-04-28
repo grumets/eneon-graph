@@ -1,0 +1,254 @@
+{
+	"filter": [{
+		"COMMENT": "Connecta un SDG indicator amb una EONetwork sense passar per un SDG",
+		"description": "All SDG indicators connected to EO networks",
+		"connect": true,
+		"ini_node": {"supertype": ["SDGIndicator"], "type": null, "subtype": null},
+		"excluded_intermediate_node": {"supertype": null, "type": ["SDG"], "subtype": null},
+		"excluded_edge": ["relatedEV"],
+		"end_node": {"supertype": null, "type": ["EONetwork"], "subtype": null}
+	},
+	{
+		"COMMENT": "Connecta una EONetwork amb una SDG indicator sense passar per un SDG",
+		"description": "All EO networks connected from SDG indicators",
+		"connect": true,
+		"direction": "back", 
+		"ini_node": {"supertype": null, "type": ["EONetwork"], "subtype": null},
+		"excluded_intermediate_node": {"supertype": null, "type": ["SDG"], "subtype": null},
+		"excluded_edge": ["relatedEV"],
+		"bidirectional_edge": ["nationalNetwork", "contributor", "networkSitesDevelopement"],
+		"end_node": {"supertype": ["SDGIndicator"], "type": null, "subtype": null}
+	},
+	{
+		"description": "All EO networks NOT connected from SDG indicators",
+		"connect": false,
+		"direction": "back", 
+		"ini_node": {"supertype": null, "type": ["EONetwork"], "subtype": null},
+		"excluded_intermediate_node": {"supertype": null, "type": ["SDG"], "subtype": null},
+		"excluded_edge": ["relatedEV"],
+		"bidirectional_edge": ["nationalNetwork", "contributor", "networkSitesDevelopement"],
+		"end_node": {"supertype": ["SDGIndicator"], "type": null, "subtype": null}
+	},
+	{
+		"COMMENT": "Connecta un EV amb una EONetwork sense passar per un SDG_indicator",
+		"description": "EVs connected to EO networks",
+		"connect": true,
+		"ini_node": {"supertype": ["EV"], "type": null, "subtype": null},
+		"excluded_intermediate_node": {"supertype": ["SDGIndicator"], "type": null, "subtype": null},
+		"excluded_edge": ["relatedEV"],
+		"end_node": {"supertype": null, "type": ["EONetwork"], "subtype": null}
+	},
+	{
+		"COMMENT": "Busca les EV que no connecten amb cap EONetwork",
+		"description": "All EVs NOT connected to EO networks",
+		"connect": false,
+		"ini_node": {"supertype": ["EV"], "type": null, "subtype": null},
+		"excluded_intermediate_node": {"supertype": ["SDGIndicator"], "type": null, "subtype": null},
+		"excluded_edge": ["relatedEV"],
+		"end_node": {"supertype": null, "type": ["EONetwork"], "subtype": null}
+	},	
+	{
+		"COMMENT": "Connecta un SDG indicator amb una EV sense passar per un SDG",
+		"description": "All SDG indicators connected to EV",
+		"connect": true,
+		"ini_node": {"supertype": ["SDGIndicator"], "type": null, "subtype": null},
+		"excluded_intermediate_node": {"supertype": null, "type": ["SDG"], "subtype": null},
+		"excluded_edge": ["relatedEV"],
+		"end_node": {"supertype": ["EV"], "type": null, "subtype": null}
+	},
+	{
+		"COMMENT": "Busca els SDG indicator que no connecten amb una EV sense passar per un SDG",
+		"description": "All SDG indicators NOT connected to EV",
+		"connect": false,
+		"ini_node": {"supertype": ["SDGIndicator"], "type": null, "subtype": null},
+		"excluded_intermediate_node": {"supertype": null, "type": ["SDG"], "subtype": null},
+		"excluded_edge": ["relatedEV"],
+		"end_node": {"supertype": ["EV"], "type": null, "subtype": null}
+	},
+	{
+		"COMMENT": "Busca les EVs que connecten amb un SDG indicator",
+		"description": "All EVs connected to SDG indicators",
+		"connect": true,
+		"direction": "back",
+		"ini_node":  {"supertype": ["EV"], "type": null, "subtype": null},
+		"excluded_intermediate_node": {"supertype": null, "type": ["SDG"], "subtype": null},
+		"excluded_edge": ["relatedEV"],
+		"end_node": {"supertype": ["SDGIndicator"], "type": null, "subtype": null}
+	},	
+	{
+		"COMMENT": "Busca les EVs que no connecten amb un SDG indicator",
+		"description": "All EVs NOT connected to SDG indicators",
+		"connect": false,
+		"direction": "back",		
+		"ini_node":  {"supertype": ["EV"], "type": null, "subtype": null},
+		"excluded_intermediate_node": {"supertype": null, "type": ["SDG"], "subtype": null},
+		"excluded_edge": ["relatedEV"],
+		"end_node": {"supertype": ["SDGIndicator"], "type": null, "subtype": null}
+	},	
+	{
+		"description": "EOVs connected to other EVs",
+		"connect": true,
+		"ini_node": {"supertype": null, "type": ["EOV"], "subtype": null},
+		"excluded_intermediate_node": {"supertype": ["SDGIndicator"], "type": null, "subtype": null},
+		"end_node": {"supertype": ["EV"], "type": null, "subtype": null}
+	},	
+	{
+		"COMMENT": "Connecta un EBV amb un SDG indicator sense passar per un SDG",	
+		"description": "All EBV used in SDG indicators",
+		"connect": true,
+		"ini_node": {"supertype": ["SDGIndicator"], "type": null, "subtype": null},
+		"excluded_intermediate_node": {"supertype": null, "type": ["SDG"], "subtype": null},
+		"end_node": {"supertype": null, "type": ["EBV"], "subtype": null}
+	},
+	{
+		"description": "All EBV used in SDG indicators with some bidiretional relations",
+		"connect": true,
+		"ini_node": {"supertype": ["SDGIndicator"], "type": null, "subtype": null},
+		"excluded_intermediate_node": {"supertype": null, "type": ["SDG"], "subtype": null},
+		"excluded_edge": ["relatedEV"],
+		"end_node": {"supertype": null, "type": ["EBV"], "subtype": null}
+	},	
+	{
+		"description": "All EBV NOT used in SDG indicators",
+		"type": "connected",  
+		"connect": false,
+		"direction:": "back",
+		"ini_node": {"supertype": null, "type": ["EBV"], "subtype": null},
+		"excluded_intermediate_node": {"supertype": null, "type": ["SDG"], "subtype": null},
+		"end_node": {"supertype": ["SDGIndicator"], "type": null, "subtype": null}
+	},
+	{
+		"COMMENT": "Connecta un EBV amb una EONetwork sense passar per un SDG_indicator",
+		"description": "All EBVs connected to EO networks",
+		"connect": true,
+		"ini_node": {"supertype": null, "type": ["EBV"], "subtype": null},
+		"excluded_intermediate_node": {"supertype": ["SDGIndicator"], "type": null, "subtype": null},	
+		"end_node": {"supertype": null, "type": ["EONetwork"], "subtype": null}
+	},
+	{
+		"description": "All EBVs NOT connected to EO networks",
+		"connect": false,
+		"ini_node": {"supertype": null, "type": ["EBV"], "subtype": null},
+		"excluded_intermediate_node": {"supertype": ["SDGIndicator"], "type": null, "subtype": null},
+		"end_node": {"supertype": null, "type": ["EONetwork"], "subtype": null}
+	},
+	{
+		"description": "EVs connected to other EVs",
+		"connect": true,
+		"ini_node": {"supertype": ["EV"], "type": null, "subtype": null},
+		"excluded_intermediate_node": {"supertype": ["SDGIndicator"], "type": null, "subtype": null},
+		"end_node": {"supertype": ["EV"], "type": null, "subtype": null}
+	},
+	{
+		"description": "EOVs connected to ECVs",
+		"connect": true,
+		"ini_node": {"supertype": null, "type": ["EOV"], "subtype": null},
+		"excluded_intermediate_node": {"supertype": ["SDGIndicator"], "type": null, "subtype": null},	
+		"end_node": {"supertype": null, "type": ["ECV"], "subtype": null}
+	},
+	{
+		"description": "EOVs connected to other EVs",
+		"connect": true,
+		"ini_node": {"supertype": null, "type": ["EOV"], "subtype": null},
+		"excluded_intermediate_node": {"supertype": ["SDGIndicator"], "type": null, "subtype": null},	
+		"end_node": {"supertype": ["EV"], "type": null, "subtype": null}
+	},
+	{
+		"description": "ECVs connected to other EVs",
+		"connect": true,
+		"ini_node": {"supertype": null, "type": ["ECV"], "subtype": null},
+		"excluded_intermediate_node": {"supertype": ["SDGIndicator"], "type": null, "subtype": null},	
+		"end_node": {"supertype": ["EV"], "type": null, "subtype": null}
+	},
+	{
+		"description": "EAVs connected to other EVs",
+		"connect": true,
+		"ini_node": {"supertype": null, "type": ["EAV"], "subtype": null},
+		"excluded_intermediate_node": {"supertype": ["SDGIndicator"], "type": null, "subtype": null},	
+		"end_node": {"supertype": ["EV"], "type": null, "subtype": null}
+	},
+	{
+		"description": "EREVs connected to other EVs",
+		"connect": true,
+		"ini_node": {"supertype": null, "type": ["EREV"], "subtype": null},
+		"excluded_intermediate_node": {"supertype": ["SDGIndicator"], "type": null, "subtype": null},	
+		"end_node": {"supertype": ["EV"], "type": null, "subtype": null}
+	},
+	{
+		"description": "SocioEcoVs connected to other EVs",
+		"connect": true,
+		"direction": "back",
+		"ini_node": {"supertype": null, "type": ["SocioEcoV"], "subtype": null},
+		"excluded_intermediate_node": {"supertype": ["SDGIndicator"], "type": null, "subtype": null},	
+		"end_node": {"supertype": ["EV"], "type": null, "subtype": null}
+	},	
+	{
+		"description": "EOVs connected to EAVs",
+		"connect": true,
+		"ini_node": {"supertype": null, "type": ["EOV"], "subtype": null},
+		"excluded_intermediate_node": {"supertype": ["SDGIndicator"], "type": null, "subtype": null},	
+		"end_node": {"supertype": null, "type": ["EAV"], "subtype": null}
+	},	
+	{
+		"description": "EBVs connected to other EVs",
+		"connect": true,
+		"ini_node": {"supertype": null, "type": ["EBV"], "subtype": null},
+		"excluded_intermediate_node": {"supertype": ["SDGIndicator"], "type": null, "subtype": null},
+		"end_node": {"supertype": ["EV"], "type": null, "subtype": null}
+	},
+	{
+		"description": "EBVs connected to other EBVs",
+		"connect": true,
+		"ini_node": {"supertype": null, "type": ["EBV"], "subtype": null},
+		"excluded_intermediate_node": {"supertype": ["SDGIndicator"], "type": null, "subtype": null},
+		"end_node": {"supertype": null, "type": ["EBV"], "subtype": null}
+	}],
+	"vis_options": { 
+		"interaction": { "navigationButtons": true, "keyboard": true},
+		"layout": {"improvedLayout": false},
+		"nodes": {"shape": "box", "borderWidth": 2, "shadow":true},
+		"edges": {"font": {"align": "top", "size": 10}}
+	},
+	"styles": {
+		"COMMENT": "Useful table of colors: https://www.w3schools.com/colors/colors_names.asp",
+		"node": [{
+			"type": "EONetwork",
+			"shape": "ellipse",
+			"color": {"background":"Aquamarine", "border": "Blue"}
+		},{
+			"type": "SDG",
+			"color": {"background":"LightYellow", "border":"GoldenRod"}
+		},{
+			"type": "SDGIndicator_S",
+			"color": {"background":"MediumSlateBlue", "border":"Indigo"}
+		},{
+			"type": "SDGIndicator_I",
+			"color": {"background":"OrangeRed", "border":"Red"}
+		},{
+			"type": "SDGIndicator_R",
+			"color": {"background":"RoyalBlue", "border":"Blue"}
+		},{
+			"type": "SDGIndicator_P",
+			"color": {"background":"SandyBrown", "border":"Brown"}
+		},{
+			"type": "EBV",
+			"color": {"background":"YellowGreen", "border":"SeaGreen"}
+		},{
+			"type": "ECV",
+			"color": {"background":"Pink", "border":"Orchid"}
+		},{
+			"type": "EOV",
+			"color": {"background":"Silver", "border":"DarkGray"}
+		},{
+			"type": "SocioEcoV",
+			"color": {"background":"Orchid", "border":"MediumVioletRed"}
+		},{
+			"type": "EAV",
+			"color": {"background":"LightBlue", "border":"LightSteelBlue"}
+		},{
+			"type": "EREV",
+			"color": {"background":"Moccasin", "border":"Khaki"}
+		}],
+		"eage": []
+	}
+}

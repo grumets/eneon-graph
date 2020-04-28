@@ -1,0 +1,11 @@
+RDF directament al nevegador:
+
+Estéticament aquest és el que ens agrada: https://github.com/nylen/d3-process-map
+Hi ha 2 problemes:
+1.- Els vincles no tenen cap etiqueta i per tant només hi ha 2 tipus de relacions: “depends” i “dependen on”. Això ho fa bé aquest: https://github.com/Rathachai/d3rdf
+2.- Els m’agradaria que els elements “finals” que són strings etc no sortissin al graph sino que sortissin a la consulta. Això ho fa bé aquest: https://github.com/alangrafu/visualRDF
+
+
+Finalment adaptem el codi de https://github.com/nylen/d3-process-map
+
+JM

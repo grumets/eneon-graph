@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html> <!--<![endif]-->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta charset="utf-8">
+        <title>Earth Observation Networks</title>
+        <link rel="stylesheet" href="bootstrap.css">
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="svg.css">
+	<link rel="icon" href="favicon.png" sizes="64x64" type="image/png"> 
+    </head>
+    <body>
+        <!--[if lt IE 9]>
+        <div class="unsupported-browser">
+            This website does not fully support your browser.  Please get a
+            better browser (Firefox or <a href="/chrome/">Chrome</a>, or if you
+            must use Internet Explorer, make it version 9 or greater).
+        </div>
+        <![endif]-->
+        <div id="split-container">
+            <a class="btn btn-default nav-button-list nav-button" id="nav-list" href="#list" data-name="list">
+                Complete list
+            </a>
+            <a class="btn btn-default nav-button-table nav-button" id="nav-list" href="#list" data-name="table">
+                Table
+            </a>
+            <a class="btn btn-default nav-button-source-code nav-button" id="nav-list" href="#source-code" data-name="source-code">
+                JSON & RDF
+            </a>
+            <div id="graph-container">
+                <div id="graph"></div>
+            </div>
+            <div id="docs-container">
+                <a id="docs-close" href="#">&times;</a>
+                <div id="docs" class="docs"></div>
+            </div>
+        </div>
+        <script src="jquery/jquery-1.10.2.min.js"></script>
+        <script src="jquery/jquery.browser.min.js"></script>
+        <script src="d3/d3.v3.min.js"></script>
+        <script src="colorbrewer.js"></script>
+        <script src="lib/geometry.js"></script>
+	<script src="jsonld/jsonld.js"></script>
+	<SCRIPT LANGUAGE="JavaScript" src="xml.js"></SCRIPT>
+	<SCRIPT LANGUAGE="JavaScript" src="owc_atom.js"></SCRIPT>
+	<SCRIPT LANGUAGE="JavaScript" src="wps_iso_guf.js" async defer></SCRIPT>
+	<SCRIPT language="JavaScript" src="guf_locale.js" async defer></script>
+	<SCRIPT language="JavaScript" src="guf.js" async defer></script>
+
+        <script>
+            var config = {
+        "title": "Relations among SDGs indications, essential variables and network of Earth Obaservation",
+        "graph":
+        {
+                "linkDistance": 100,
+                "charge": -400,
+		"width": 2000,
+                "height": 2000,
+                "numColors": 12,
+                "includeAbbrNamespace": false,
+                "legendType": "type",
+                "legendGroup": "group",
+                "labelPadding":
+                {
+                        "left": 3,
+                        "right": 3,
+                        "top": 2,
+                        "bottom": 2
+                },
+                "labelMargin":
+                {
+                        "left": 3,
+                        "right": 3,
+                        "top": 2,
+                        "bottom": 2
+                },
+                "ticksWithoutCollisions": 50
+        },
+        "types":
+        {
+                "view":
+                {
+                        "short": "View",
+                        "long": "Database view"
+                },
+                "table":
+                {
+                        "short": "Table",
+                        "long": "Database table"
+                },
+                "query":
+                {
+                        "short": "Query",
+                        "long": "Database query"
+                },
+                "sas":
+                {
+                        "short": "SAS project",
+                        "long": "SAS project"
+                },
+                "extract":
+                {
+                        "short": "ETL process",
+                        "long": "Extract-transform-load process"
+                },
+                "database":
+                {
+                        "short": "Access database",
+                        "long": "Access database"
+                },
+                "report":
+                {
+                        "short": "Report",
+                        "long": "Report"
+                }
+        },
+        "constraints":
+        [
+                {
+                        "has":
+                        {
+                                "id": "GEOSS"
+                        },
+                        "type": "position",
+                        "x": 0.15,
+                        "weight": 0.7
+                },
+                {
+                        "has":
+                        {
+                                "type": "query",
+                                "group": "Miscellaneous"
+                        },
+                        "type": "position",
+                        "x": 0.9,
+                        "y": 0.5,
+                        "weight": 0.7
+                },
+                {
+                        "has":
+                        {
+                                "type": "query",
+                                "group": "Management"
+                        },
+                        "type": "position",
+                        "x": 0.95,
+                        "weight": 0.7
+                },
+                {
+                        "has":
+                        {
+                                "type": "query"
+                        },
+                        "type": "linkStrength",
+                        "strength": 0.25
+                },
+                {
+                        "has":
+                        {
+                                "type": "database"
+                        },
+                        "type": "linkStrength",
+                        "strength": 0.5
+                }
+        ],
+        "jsonUrl": "networks_beta.json"
+};
+        </script>
+        <script src="script.js"></script>
+    </body>
+</html>

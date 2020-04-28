@@ -5,6 +5,7 @@ The files for deploying this graph are included in the graph-EV-SDG folder.
 
 You need to copy this folder locally, paying attention at the following files:
 * networks.json. Is where all the data is stored following json format. In this particular case, Research Infrastructures, Essential Variables and SDG indicators, are described and interrelated. For example:
+```
 {
 		"id":  "eneon:Phenology",
 		"type": "EBV",
@@ -25,6 +26,7 @@ You need to copy this folder locally, paying attention at the following files:
 			"relatedEV": ["eneon:Crop phenology","eneon:Fish abundance and distribution", "eneon:Marine turtles, birds, mammals abundance and distribution", "eneon:Hard coral cover and composition", "eneon:Seagrass cover and composition", "eneon:Macroalgal canopy cover and composition", "eneon:Mangrove cover and composition"]
 		}		
 	}
+```  
 * schema.json. Is the schema that rules and validates the json file. Here are expressed the definitions allowed, the links, etc.
 * index.htm. The htm which shows the graph in the browser reading directly to the json file. This file must be indicated here.
 
@@ -32,10 +34,11 @@ You need to copy this folder locally, paying attention at the following files:
 The files for deploying this graph are included in the graph-vis folder.
 
 You need to copy this folder locally, paying attention at the following files:
-* network.json
+* network.json 
 * conf_vis_schema.json
 * index.htm
-* conf_vis.json. In this file the desired queries over the network.json file are expressed. For example:
+* conf_vis.json. In this file the desired queries over the network.json file are expressed. For example
+```
 {
   "description": "All EO networks NOT connected from SDG indicators",
   "connect": false,
@@ -46,3 +49,4 @@ You need to copy this folder locally, paying attention at the following files:
   "bidirectional_edge": ["nationalNetwork", "contributor", "networkSitesDevelopement"],
   "end_node": {"supertype": ["SDGIndicator"], "type": null, "subtype": null}
 },
+```
